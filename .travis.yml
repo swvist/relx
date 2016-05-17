@@ -29,12 +29,12 @@ before_script:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install erlang; fi
   - wget https://s3.amazonaws.com/rebar3/rebar3
   - chmod +x rebar3
-script: "./rebar3 update && ./rebar3 ct"
+script: "epmd -daemon && ./rebar3 update && ./rebar3 ct"
 branches:
   only:
     - master
 addons:
-    hostname: travis.dev 
+    hostname: travis.dev
 notifications:
   email:
     - core@erlware.org
